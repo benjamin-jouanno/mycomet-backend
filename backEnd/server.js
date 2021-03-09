@@ -6,6 +6,7 @@
   User = require('./api/models/userModel'), //created model loading here
   Meetups = require('./api/models/meetupsModel'),
   bodyParser = require('body-parser');
+  commet = require('./api/models/cometModels'),
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;

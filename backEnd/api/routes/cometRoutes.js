@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-  var user = require('../controllers/CometController');
+  var comet = require('../controllers/CometController');
 
   // user Routes
   app.route('/comet')
