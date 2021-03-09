@@ -9,29 +9,7 @@
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-const LOCAL_DATABASE = "mongodb://localhost/mycometdb";
-const LOCAL_PORT  = 8080;
-
-
-mongodb.MongoClient.connect(process.env.MONGODB_URI || LOCAL_DATABASE,
-    {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-    }, function (error, client) {
-
-        if (error) {
-            console.log(error);
-            process.exit(1);
-        }
-
-        database = client.db();
-        console.log("Database connection done.");
-
-        var server = app.listen(process.env.PORT || LOCAL_PORT, function () {
-            var port = server.address().port;
-            console.log("App now running on port", port);
-        });
-    });
+mongoose.connect('mongodb://localhost/mycometdb');
 
 /*  "/api/status"
  *   GET: Get server status
@@ -63,10 +41,12 @@ app.listen(80, function () {
 var routes = require('./api/routes/userRoutes');
 var meetups = require('./api/routes/meetupsRoutes');
 var auth = require('./api/routes/authRoutes');
+var comet = require('./api/routes/comitRoutes');
 
 routes(app); //register the route
 meetups(app);
 auth(app);
+comet(app);
 
 app.listen(port);
 
