@@ -41,7 +41,7 @@ app.listen(80, function () {
 var routes = require('./api/routes/userRoutes');
 var meetups = require('./api/routes/meetupsRoutes');
 var auth = require('./api/routes/authRoutes');
-var comet = require('./api/routes/comitRoutes');
+var comet = require('./api/routes/cometRoutes');
 
 routes(app); //register the route
 meetups(app);
