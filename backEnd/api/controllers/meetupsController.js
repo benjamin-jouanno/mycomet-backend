@@ -13,8 +13,6 @@ exports.list_all_meetups = function(req, res) {
 };
 
 
-
-
 exports.create_a_meetup = function(req, res) {
   var new_meetup = new Meetup(req.body);
   new_meetup.save(function(err, meet) {
