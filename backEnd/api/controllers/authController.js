@@ -7,14 +7,20 @@ var mongoose = require('mongoose');
 var express = require('express');
 var authRouter = express.Router();
 var bodyParser = require('body-parser');
+var User = mongoose.model('User');
+var checkParams = require('../helpers/checkParams');
+
 authRouter.use(bodyParser.urlencoded({ extended: false }));
 authRouter.use(bodyParser.json());
- var User = mongoose.model('User');
-
 
   exports.register_new_user = function(req, res) {
+    if (!checkParams(req.body, ["firstName", "lastName", "email", 
+                              "phoneNbr", "hashedPassword"])) {
+      res.status(404).send({ result: false, message: "Veuillez ajouter les paramètres." });
+    }
+
     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-    
+
     User.create({
       firstName : req.body.firstName,
       lastName : req.body.lastName,
@@ -50,6 +56,10 @@ authRouter.use(bodyParser.json());
   };
 
   exports.login_user = function(req, res) {
+    if (!checkParams(req.body, ["email", "password"])) {
+      res.status(404).send({ result: false, message: "Veuillez ajouter les paramètres." });
+    }
+ 
     User.findOne({ email: req.body.email }, function (err, user) {
       if (err) return res.status(500).send('Error on the server.');
       if (!user) return res.status(404).send('No user found.');

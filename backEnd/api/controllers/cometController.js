@@ -1,6 +1,7 @@
 'use strict';
 
 
+var checkParams = require('../helpers/checkParams');
 var mongoose = require('mongoose'),
   Comet = mongoose.model('Comet');
 
