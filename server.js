@@ -12,6 +12,12 @@
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/mycometdb');
 
+app.use(cors())
+
+//Parsear el body usando body parser
+app.use(bodyParser.json()); // body en formato json
+app.use(bodyParser.urlencoded({ extended: false })); //body formulario
+
 /*  "/api/status"
  *   GET: Get server status
  *   PS: it's just an example, not mandatory
@@ -19,15 +25,6 @@ mongoose.connect('mongodb://localhost:27017/mycometdb');
 app.get("/api/status", function (req, res) {
     res.status(200).json({ status: "UP" });
 });
-
-function manageError(res, reason, message, code) {
-    console.log("Error: " + reason);
-    res.status(code || 500).json({ "error": message });
-}
-
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
 
 var routes = require('./api/routes/userRoutes');
 var meetups = require('./api/routes/meetupsRoutes');

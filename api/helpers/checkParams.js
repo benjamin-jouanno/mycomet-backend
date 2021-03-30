@@ -1,11 +1,11 @@
-checkParams = function(objs, params) {
-    if (objs == undefined)
+module.exports = checkParams = function(objs, params) {
+    console.log(objs);
+    console.log(params)
+    if (!objs)
         return false
     params.map(e => {
-        if (!obj[e])
+        if (!objs[e])
             return false;
     })
     return true;
 };
-
-module.exports = checkParams

@@ -14,8 +14,9 @@ authRouter.use(bodyParser.urlencoded({ extended: false }));
 authRouter.use(bodyParser.json());
 
   exports.register_new_user = function(req, res, next) {
+    console.log(req.body);
     if (!checkParams(req.body, ["firstName", "lastName", "email", 
-                              "phoneNbr", "hashedPassword"])) {
+                              "phoneNbr", "password"])) {
       res.status(404).send({ result: false, message: "Veuillez ajouter les paramètres." });
     }
 
@@ -53,13 +54,14 @@ authRouter.use(bodyParser.json());
   };
 
   exports.login_user = function(req, res) {
+    console.log(req.body)
     if (!checkParams(req.body, ["email", "password"])) {
       res.status(404).send({ result: false, message: "Veuillez ajouter les paramètres." });
     }
  
     User.findOne({ email: req.body.email }, function (err, user) {
-      if (err) return res.status(500).send('Error on the server.');
-      if (!user) return res.status(404).send('No user found.');
+      if (err) return res.status(500).send({result: false, message: 'Error on the server.'});
+      if (!user) return res.status(404).send({result: false, message: 'No user found.'});
       
       var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
       if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
@@ -68,10 +70,10 @@ authRouter.use(bodyParser.json());
         expiresIn: 86400 // expires in 24 hours
       });
       
-      res.status(200).send({ auth: true, token: token });
+      res.status(200).send({ result: true, token: token });
     });
   };
 
   exports.logout = function(req, res) {
-    res.status(200).send({ auth: false, token: null });
+    res.status(200).send({ result: true, token: "" });
   }
