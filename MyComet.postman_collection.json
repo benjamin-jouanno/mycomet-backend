@@ -16,6 +16,21 @@
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{host}}/login",
 							"host": [
@@ -76,13 +91,43 @@
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Ethan",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "KERDELHUE",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ethan.kerdelhue@epitech.eu",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test123test",
+									"type": "text"
+								},
+								{
+									"key": "phoneNbr",
+									"value": "+33666210769",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{host}}/login",
+							"raw": "{{host}}/register",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"login"
+								"register"
 							]
 						}
 					},
@@ -98,7 +143,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{host}}/comet",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"comet"
+							]
+						}
 					},
 					"response": []
 				},
