@@ -8,7 +8,7 @@ module.exports = function(app) {
 
 
   app.route('/me')
-    .get(auth.read_me);
+    .get(authenticateToken, auth.read_me);
 
   app.route('/login')
     .post(auth.login_user);

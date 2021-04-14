@@ -13,9 +13,11 @@ exports.list_all_users = function(req, res) {
 };
 
 
-
-
 exports.create_a_user = function(req, res) {
+  if (!checkParams(req.body, ["firstname", "lastname", "email", 
+                              "phoneNbr", "password"])) {
+      res.status(404).send({ result: false, message: "Veuillez ajouter les paramètres." });
+  }
   var new_user = new User(req.body);
   new_user.save(function(err, user) {
     if (err)

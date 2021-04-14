@@ -9,19 +9,23 @@ var MeetupSchema = new Schema({
   },
   availablePlaces: {
     type: Number,
-    default: 0
+    default: 0,
+    min: 0,
   },
   registeredInternalUser: {
     type: Number,
-    default: 0
+    default: 0,
+    min: 0,
   },
   registeredIExternallUser: {
     type: Number,
-    default: 0
+    default: 0,
+    min: 0,
   },
   registeredContractors: {
     type: Number,
-    default: 0
+    default: 0,
+    min: 0,
   },
   eventDate: {
     type: Date,

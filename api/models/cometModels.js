@@ -12,6 +12,7 @@ var CometSchema = new Schema({
   },
   availableBudget: {
     type: Number,
+    min: 0,
   },
   leadUserId: {
     type: String,

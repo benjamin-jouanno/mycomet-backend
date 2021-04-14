@@ -14,6 +14,6 @@ module.exports = function(req, res, next) {
     next();
   } catch (ex) {
     //if invalid token
-    res.status(400).send({ result: false, message: "Invalid token." });
+    res.status(401).send({ result: false, message: "Invalid token." });
   }
 };
